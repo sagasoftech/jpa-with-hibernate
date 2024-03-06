@@ -37,4 +37,15 @@ public class CourseController {
 		}
 		return ResponseEntity.ok(course);
     }
+	
+	@GetMapping("/coursename/{courseId}")
+    public ResponseEntity<String> getCourseNameById(@PathVariable Long courseId){
+		Course course = repository.findById(courseId);
+		logger.info("Course {} -> {}", courseId, course);
+		
+		if(Objects.isNull(course)) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+		}
+		return ResponseEntity.ok(course.getName());
+    }
 }
