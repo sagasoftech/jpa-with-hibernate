@@ -18,6 +18,11 @@ public class CourseRepository {
 		return em.find(Course.class, id);
 	}
 	
+	public void deleteById(Long id){
+		Course course = findById(id);
+		em.remove(course);
+	}
+	
 	//public Course save(Course course) -> insert or update
 	
 	//public void deleteById(Long id)

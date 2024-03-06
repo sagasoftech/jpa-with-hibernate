@@ -48,4 +48,12 @@ public class CourseController {
 		}
 		return ResponseEntity.ok(course.getName());
     }
+	
+	@GetMapping("/course/delete/{courseId}")
+    public ResponseEntity<String> deleteCourseById(@PathVariable Long courseId){
+		repository.deleteById(courseId);
+		logger.info("Course {} -> deleted", courseId);
+		
+		return ResponseEntity.ok("Course " +courseId+ " deleted.");
+    }
 }
