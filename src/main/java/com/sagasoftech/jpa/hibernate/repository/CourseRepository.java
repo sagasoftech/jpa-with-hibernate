@@ -6,9 +6,11 @@ import org.springframework.stereotype.Repository;
 import com.sagasoftech.jpa.hibernate.entity.Course;
 
 import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 
 
 @Repository
+@Transactional
 public class CourseRepository {	
 	
 	@Autowired
