@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sagasoftech.jpa.hibernate.entity.Course;
@@ -55,5 +57,16 @@ public class CourseController {
 		logger.info("Course {} -> deleted", courseId);
 		
 		return ResponseEntity.ok("Course " +courseId+ " deleted.");
+    }
+	
+	@PostMapping("/course/save/{courseId}")
+    public ResponseEntity<Course> saveCourse(@RequestBody Course course){
+		repository.save(course);
+		logger.info("Course {} -> {}", course.getId(), course);
+		
+		if(Objects.isNull(course)) {
+            return new ResponseEntity<>(course, HttpStatus.NOT_FOUND);
+		}
+		return ResponseEntity.ok(course);
     }
 }
