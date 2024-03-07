@@ -36,5 +36,17 @@ public class CourseRepository {
 		return course;
 	}
 	
+	public Course playEntityManager(Course course) {
+		if(course.getId()==null) {
+			//Insert
+			em.persist(course);
+		}else {
+			//Update
+			em.merge(course);
+		}
+		course.setName("Rest Services in 1000 steps");
+		
+		return course;
+	}
 
 }

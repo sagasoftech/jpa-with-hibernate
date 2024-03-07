@@ -59,9 +59,20 @@ public class CourseController {
 		return ResponseEntity.ok("Course " +courseId+ " deleted.");
     }
 	
-	@PostMapping("/course/save/{courseId}")
+	@PostMapping("/course/save")
     public ResponseEntity<Course> saveCourse(@RequestBody Course course){
 		repository.save(course);
+		logger.info("Course {} -> {}", course.getId(), course);
+		
+		if(Objects.isNull(course)) {
+            return new ResponseEntity<>(course, HttpStatus.NOT_FOUND);
+		}
+		return ResponseEntity.ok(course);
+    }
+	
+	@PostMapping("/course/playem")
+    public ResponseEntity<Course> playWithEntityManager(@RequestBody Course course){
+		repository.playEntityManager(course);
 		logger.info("Course {} -> {}", course.getId(), course);
 		
 		if(Objects.isNull(course)) {
