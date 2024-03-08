@@ -81,7 +81,7 @@ public class CourseController {
 		
 		repository.playEntityManager2(new Course("Angular JS for Flush demo"));
 		repository.playEntityManager3(new Course("Angular JS 1 for detach demo"), new Course("Angular JS 2 for detach demo"));
-		repository.playEntityManager4(new Course("Vue JS 1 for detach demo"), new Course("Vue JS 2 for detach demo"));
+		repository.playEntityManager4(new Course("React JS 1 for detach demo"), new Course("React JS 2 for detach demo"));
 		
 		return ResponseEntity.ok(course);
     }

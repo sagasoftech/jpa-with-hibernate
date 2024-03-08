@@ -89,9 +89,30 @@ public class CourseRepository {
 		em.clear();
 		
 		//course 1 details will not be saved since it has been detached from em
-		course1.setName("Vue JS 1 after detach");
+		course1.setName("Vue JS 1 after clear");
 		em.flush();
-		course2.setName("Vue JS 2 after detach");
+		course2.setName("Vue JS 2 after clear");
+		em.flush();
+		
+		return course1;
+	}
+	
+	//refresh() used to refresh the entity objects from DB. 
+	//All the changes which are not flushed will be reloaded from the DB
+	public Course playEntityManager5(Course course1, Course course2) {
+		em.persist(course1);
+		em.persist(course2);
+		em.flush();
+		
+		
+		course1.setName("React JS 1 - Updated");
+		course2.setName("React JS 2 - Updated");
+		
+		//course 1 details will be loaded from DB using select statement
+		em.refresh(course1);
+		
+		//Only course 2 changes will go to DB 
+		//Course 1 changes will not go to DB Since course 1 changes are loaded from DB and no further changes.
 		em.flush();
 		
 		return course1;
