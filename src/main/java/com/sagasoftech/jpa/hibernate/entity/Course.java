@@ -1,5 +1,10 @@
 package com.sagasoftech.jpa.hibernate.entity;
 
+import java.time.LocalDateTime;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -17,7 +22,14 @@ public class Course {
 	//@Column(name="NAME")
 	@Column(name="NAME", nullable = false)
 	private String name;
+	
+	@UpdateTimestamp
+	private LocalDateTime lastUpdatedDate;
 
+	@CreationTimestamp
+	private LocalDateTime createdDate;
+
+	
 	protected Course() {
 	}
 
@@ -36,4 +48,22 @@ public class Course {
 	public Long getId() {
 		return id;
 	}
+
+	public LocalDateTime getLastUpdatedDate() {
+		return lastUpdatedDate;
+	}
+
+	public void setLastUpdatedDate(LocalDateTime lastUpdatedDate) {
+		this.lastUpdatedDate = lastUpdatedDate;
+	}
+
+	public LocalDateTime getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(LocalDateTime createdDate) {
+		this.createdDate = createdDate;
+	}
+	
+	
 }
