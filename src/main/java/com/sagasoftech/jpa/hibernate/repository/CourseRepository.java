@@ -65,14 +65,14 @@ public class CourseRepository {
 	//Changes to other entity in the same block will be sent to DB
 	public Course playEntityManager3(Course course1, Course course2) {
 		em.persist(course1);
-		em.persist(course1);
+		em.persist(course2);
 		
 		em.detach(course1);
 		
 		//course 1 details will not be saved since it has been detached from em
 		course1.setName("Angular JS 1 after detach");
 		em.flush();
-		course1.setName("Angular JS 2 after detach");
+		course2.setName("Angular JS 2 after detach");
 		em.flush();
 		
 		return course1;
@@ -83,14 +83,15 @@ public class CourseRepository {
 	//No DB update after clear
 	public Course playEntityManager4(Course course1, Course course2) {
 		em.persist(course1);
-		em.persist(course1);
+		em.persist(course2);
+		em.flush();
 		
 		em.clear();
 		
 		//course 1 details will not be saved since it has been detached from em
 		course1.setName("Vue JS 1 after detach");
 		em.flush();
-		course1.setName("Vue JS 2 after detach");
+		course2.setName("Vue JS 2 after detach");
 		em.flush();
 		
 		return course1;
