@@ -77,4 +77,22 @@ public class CourseRepository {
 		
 		return course1;
 	}
+	
+	//clear() used to detach all entity objects from entity manager. 
+	//With this next operation related to any entity will not be sent to DB
+	//No DB update after clear
+	public Course playEntityManager4(Course course1, Course course2) {
+		em.persist(course1);
+		em.persist(course1);
+		
+		em.clear();
+		
+		//course 1 details will not be saved since it has been detached from em
+		course1.setName("Vue JS 1 after detach");
+		em.flush();
+		course1.setName("Vue JS 2 after detach");
+		em.flush();
+		
+		return course1;
+	}
 }
