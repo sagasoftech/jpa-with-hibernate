@@ -14,7 +14,8 @@ public class Course {
 	@GeneratedValue
 	private Long id;
 
-	@Column(name="NAME")
+	//@Column(name="NAME")
+	@Column(name="NAME", nullable = false)
 	private String name;
 
 	protected Course() {
