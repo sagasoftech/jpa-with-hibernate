@@ -78,6 +78,9 @@ public class CourseController {
 		if(Objects.isNull(course)) {
             return new ResponseEntity<>(course, HttpStatus.NOT_FOUND);
 		}
+		
+		repository.playEntityManager2(course);
+		
 		return ResponseEntity.ok(course);
     }
 }

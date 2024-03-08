@@ -49,4 +49,13 @@ public class CourseRepository {
 		return course;
 	}
 
+	public Course playEntityManager2(Course course) {
+		em.persist(course);
+		em.flush();
+		
+		course.setName("Angular JS in 1000 steps");
+		em.flush();
+		
+		return course;
+	}
 }
