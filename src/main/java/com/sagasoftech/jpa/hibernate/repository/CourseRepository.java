@@ -49,13 +49,32 @@ public class CourseRepository {
 		return course;
 	}
 
+	//flush() used to send data to database immediately before executing next code
 	public Course playEntityManager2(Course course) {
 		em.persist(course);
 		em.flush();
 		
-		course.setName("Angular JS in 1000 steps");
+		course.setName("Angular JS after flush");
 		em.flush();
 		
 		return course;
+	}
+	
+	//detach() used to detach entity object from entity manager. 
+	//With this next operation related to that entity will not be sent to DB
+	//Changes to other entity in the same block will be sent to DB
+	public Course playEntityManager3(Course course1, Course course2) {
+		em.persist(course1);
+		em.persist(course1);
+		
+		em.detach(course1);
+		
+		//course 1 details will not be saved since it has been detached from em
+		course1.setName("Angular JS 1 after detach");
+		em.flush();
+		course1.setName("Angular JS 2 after detach");
+		em.flush();
+		
+		return course1;
 	}
 }

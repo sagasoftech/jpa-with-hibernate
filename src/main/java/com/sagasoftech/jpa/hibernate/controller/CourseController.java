@@ -79,7 +79,8 @@ public class CourseController {
             return new ResponseEntity<>(course, HttpStatus.NOT_FOUND);
 		}
 		
-		repository.playEntityManager2(course);
+		repository.playEntityManager2(new Course("Angular JS for Flush demo"));
+		repository.playEntityManager3(new Course("Angular JS 1 for detach demo"), new Course("Angular JS 2 for detach demo"));
 		
 		return ResponseEntity.ok(course);
     }
